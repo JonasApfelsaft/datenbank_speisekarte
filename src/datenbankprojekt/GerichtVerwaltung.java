@@ -164,6 +164,7 @@ public class GerichtVerwaltung {
 		while (true) {
 			try {
 				wahl = in.nextLine();
+				System.out.println(wahl);
 				break;
 			} catch (InputMismatchException e) {
 				System.out.println("Falsche Eingabe!");
@@ -171,17 +172,18 @@ public class GerichtVerwaltung {
 			}
 		}
 
-		gerichte = alleGerichte();
-		boolean vorhanden = false;
-		for (GerichtEntitaet b : gerichte) {
+		//gerichte = alleGerichte();
+		boolean vorhanden = true;
+		/*for (GerichtEntitaet b : gerichte) {
 			if (b.getName().equals(wahl)) {
 				vorhanden = true;
 				break;
 			}
-		}
+		}*/
 
 		if (vorhanden) {
-			String query = "DELETE FROM gericht WHERE name=" + wahl;
+			String query = "DELETE FROM gericht WHERE name='" +wahl+"';";
+			System.out.println(query);
 			int deleteState = dbcon.executeUpdate(query);
 			// muss komplett geloescht werden, da sonst die aus der Datenbank geloeschten
 			// Buecher noch drinnen sind
