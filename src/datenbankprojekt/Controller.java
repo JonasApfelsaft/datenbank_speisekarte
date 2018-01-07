@@ -14,7 +14,7 @@ public class Controller {
 	/*
 	 * Menue-Runner Methode
 	 */
-	public void run() throws SQLException {
+	public void starten() throws SQLException {
 		JDBC_Connection dbcon = new JDBC_Connection();
 		GerichtVerwaltung db = new GerichtVerwaltung(dbcon, in);
 		while(true) {
