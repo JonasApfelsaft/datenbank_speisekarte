@@ -97,12 +97,12 @@ public class GerichtVerwaltung {
 		// Tellerfarbe des Gerichts auswaehlen
 		System.out.println("Geben Sie die Tellerfarbe des Gerichts ein.");
 		System.out.println("Waehlen Sie die Farbe Blau, Gelb, Orange oder Rot aus.");
-		System.out.println("Bitte achten sie auf Gross- und Kleinschreibung bei der Farbenwahl: ");
+		System.out.println("Bitte achten sie auf die Kleinschreibung bei der Farbenwahl: ");
 		while (!ok) {
 			try {
 				Scanner s2 = new Scanner(System.in);
 				String pruefen = s2.nextLine();
-				if (pruefen.equals("Blau") || pruefen.equals("Gelb") || pruefen.equals("Orange")
+				if (pruefen.equals("blau") || pruefen.equals("gelb") || pruefen.equals("orange")
 						|| pruefen.equals("Rot")) {
 					name = s2.nextLine();
 					ok = true;
