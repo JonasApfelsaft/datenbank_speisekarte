@@ -75,8 +75,8 @@ public class GerichtVerwaltung {
 	 * @throws SQLException
 	 */
 	public void insert() throws SQLException {
-		String name = null;
-		String farbe = null;
+		String name = "";
+		String farbe = "";
 		int stueck = -1;
 		boolean ok = false;
 
@@ -85,7 +85,9 @@ public class GerichtVerwaltung {
 		while (!ok) {
 			try {
 				Scanner s1 = new Scanner(System.in);
-				name = s1.nextLine();
+				name += s1.nextLine();
+				System.out.println(name);
+				//name += System.lineSeparator();
 				ok = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Falsche Eingabe! Das Programm wird beendet.");
@@ -96,15 +98,18 @@ public class GerichtVerwaltung {
 
 		// Tellerfarbe des Gerichts auswaehlen
 		System.out.println("Geben Sie die Tellerfarbe des Gerichts ein.");
-		System.out.println("Waehlen Sie die Farbe Blau, Gelb, Orange oder Rot aus.");
+		System.out.println("Waehlen Sie die Farbe blau, gelb, orange oder rot aus.");
 		System.out.println("Bitte achten sie auf die Kleinschreibung bei der Farbenwahl: ");
 		while (!ok) {
 			try {
 				Scanner s2 = new Scanner(System.in);
-				String pruefen = s2.nextLine();
+				String pruefen = s2.next();
 				if (pruefen.equals("blau") || pruefen.equals("gelb") || pruefen.equals("orange")
-						|| pruefen.equals("Rot")) {
-					name = s2.nextLine();
+						|| pruefen.equals("rot")) {
+					farbe = pruefen;
+					//farbe = "rot";
+					System.out.println(farbe);
+					
 					ok = true;
 				} else {
 					System.out.println("Falsche Eingabe! Das Programm wird beendet.");
@@ -114,6 +119,7 @@ public class GerichtVerwaltung {
 				System.out.println("Falsche Eingabe! Das Programm wird beendet.");
 				System.exit(0);
 			}
+						
 		}
 		ok = false;
 
@@ -123,6 +129,7 @@ public class GerichtVerwaltung {
 			try {
 				Scanner s3 = new Scanner(System.in);
 				stueck = s3.nextInt();
+				System.out.println(stueck);
 				ok = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Falsche Eingabe! Das Programm wird beendet.");
@@ -130,6 +137,15 @@ public class GerichtVerwaltung {
 			}
 		}
 		ok = false;
+		
+		String query = String.format("INSERT INTO gericht(name, farbe, stueck) VALUES('%s', '%s', %d);", name, farbe, stueck);
+		//String query = "INSERT INTO gericht(name, farbe, stueck) VALUES("+name+","+farbe+","+stueck+");";
+		
+		/*
+		 * INSERT INTO gericht(name, farbe, stueck)
+		   VALUES ('Inari Nigiri', 'blau', 2);
+		 */
+		dbcon.executeUpdate(query);
 
 		System.out.println("Das Einfuegen war erfolgreich!");
 	}
